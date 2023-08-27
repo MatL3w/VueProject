@@ -1,13 +1,27 @@
-const buttonEl = document.querySelector('button');
-const inputEl = document.querySelector('input');
-const listEl = document.querySelector('ul');
+const app = Vue.createApp({
+  data() {
+    return {
+      boxASelected: false,
+      boxBSelected: false,
+      boxCSelected: false,
+    };
+  },
+  computed: {
+    boxAClasses() {
+      return { active: this.boxASelected };
+    },
+  },
+  methods: {
+    boxSelected(box) {
+      if (box === 'A') {
+        this.boxASelected = !this.boxASelected;
+      } else if (box === 'B') {
+        this.boxBSelected = !this.boxBSelected;
+      } else if (box === 'C') {
+        this.boxCSelected = !this.boxCSelected;
+      }
+    },
+  },
+});
 
-function addGoal() {
-  const enteredValue = inputEl.value;
-  const listItemEl = document.createElement('li');
-  listItemEl.textContent = enteredValue;
-  listEl.appendChild(listItemEl);
-  inputEl.value = '';
-}
-
-buttonEl.addEventListener('click', addGoal);
+app.mount('#styling');
